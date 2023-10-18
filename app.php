@@ -46,17 +46,33 @@
 </head>
 
 <div class="navbar">
-    <a href="/main.html">Main</a>
-    <a href="/tech.html">Tech</a>
-    <a href="/meme.html">Memes</a>
-    <a href="/food.html">Food</a>
-    <a href="/misc.html">Miscellaneous</a>
-    <a href="/create.html">Create a new post!</a>
+    <a href="/app.php?board=main.html">Main</a>
+    <a href="/app.php?board=tech.html">Tech</a>
+    <a href="/app.php?board=meme.html">Memes</a>
+    <a href="/app.php?board=food.html">Food</a>
+    <a href="/app.php?board=misc.html">Miscellaneous</a>
+    <a href="/app.php?board=create.html">Create a new post!</a>
 </div>
 
-<div class="message">
-    <p>Posted by: John Doe</p>
-    <p>Date: October 11, 2023</p>
-    <p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-</div>
+<?php
+
+$board = $_GET["board"];
+readfile($board);
+
+if (isset($_POST["name"])) {
+  $name = $_POST["name"];
+  $target = $_POST["target"];
+  $content = $_POST["message"];
+  $date = date('Y-m-d');
+
+  $newpost = '
+    <div class="message">
+      <p>By: ' . $name . '</p>
+      <p>At: ' . $date . '</p>
+      <p>
+      <p> '. $content .'</p>
+    </div>';
+  file_put_contents($target, $newpost, FILE_APPEND);
+}
+
+?>
