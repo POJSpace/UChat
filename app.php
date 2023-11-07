@@ -1,48 +1,7 @@
 <!DOCTYPE html>
 <head>
     <title>BUChat</title>
- 
-    <style>
-        body {
-          font-family: Arial, sans-serif;
-          background-color: #f4f4f4;
-          margin: 0;
-          padding: 20px;
-        }
-        .message {
-          background-color: #fff;
-          border: 1px solid #ddd;
-          border-radius: 5px;
-          padding: 10px;
-          margin-bottom: 10px;
-        }
-        .message h3 {
-          color: #333;
-          margin: 0;
-        }
-        .message p {
-          color: #555;
-          margin: 5px 0;
-        }
-
-        .navbar {
-          background-color: #333;
-          overflow: hidden;
-        }
-
-        .navbar a {
-          float: left;
-          display: block;
-          color: white;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-        }
-
-        .navbar a:hover {
-          background-color: #555;
-        }
-    </style>
+    <link rel="stylesheet" href="static/style.css"/>
 </head>
 
 <div class="navbar">
