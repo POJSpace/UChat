@@ -1,2 +1,3 @@
 # We dont want to accidentally commit testing data in boards
-boards/
+boards/*
+

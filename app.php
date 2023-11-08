@@ -18,10 +18,16 @@
 $site = $_GET["site"];
 readfile($site);
 
+// Dave bans any use of the heretic word that i shall not pronounce.
+// It has been used by witches to cast dark magic and attain immense powers.
+function dave_the_moderator($evil) {
+    return str_replace( "script", "EVIL WITCH WORD DETECTED", $evil );
+}
+
 if (isset($_POST["name"])) {
-  $name = $_POST["name"];
+  $name = dave_the_moderator($_POST["name"]);
   $target = $_POST["target"];
-  $content = $_POST["message"];
+  $content = dave_the_moderator($_POST["message"]);
   $date = date('Y-m-d');
 
   $newpost = '
