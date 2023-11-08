@@ -5,11 +5,11 @@
 </head>
 
 <div class="navbar">
-    <a href="/app.php?board=main.html">Main</a>
-    <a href="/app.php?board=tech.html">Tech</a>
-    <a href="/app.php?board=meme.html">Memes</a>
-    <a href="/app.php?board=food.html">Food</a>
-    <a href="/app.php?board=misc.html">Miscellaneous</a>
+    <a href="/app.php?board=boards/main.html">Main</a>
+    <a href="/app.php?board=boards/tech.html">Tech</a>
+    <a href="/app.php?board=boards/meme.html">Memes</a>
+    <a href="/app.php?board=boards/food.html">Food</a>
+    <a href="/app.php?board=boards/misc.html">Miscellaneous</a>
     <a href="/app.php?board=create.html">Create a new post!</a>
 </div>
 
