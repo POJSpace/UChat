@@ -1,2 +1,0 @@
-This file makes sure that all changes applied to boards for testing do not get accidentally pushed to main.
-If you wish to 'unfreeze' this directory, rename this file to `.gitignore.off` and stage your changes.
