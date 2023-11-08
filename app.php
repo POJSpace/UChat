@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <head>
     <title>BUChat</title>
-    <link rel="stylesheet" href="static/style.css"/>
+    <link rel="stylesheet" href="static/app.css"/>
 </head>
 
 <div class="navbar">
-    <a href="/app.php?board=boards/main.html">Main</a>
-    <a href="/app.php?board=boards/tech.html">Tech</a>
-    <a href="/app.php?board=boards/meme.html">Memes</a>
-    <a href="/app.php?board=boards/food.html">Food</a>
-    <a href="/app.php?board=boards/misc.html">Miscellaneous</a>
-    <a href="/app.php?board=create.html">Create a new post!</a>
+    <a href="/app.php?site=boards/main.html">Main</a>
+    <a href="/app.php?site=boards/tech.html">Tech</a>
+    <a href="/app.php?site=boards/meme.html">Memes</a>
+    <a href="/app.php?site=boards/food.html">Food</a>
+    <a href="/app.php?site=boards/misc.html">Miscellaneous</a>
+    <a href="/app.php?site=create.html">Create a new post!</a>
 </div>
 
 <?php
 
-$board = $_GET["board"];
-readfile($board);
+$site = $_GET["site"];
+readfile($site);
 
 if (isset($_POST["name"])) {
   $name = $_POST["name"];
