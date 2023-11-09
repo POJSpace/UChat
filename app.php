@@ -11,12 +11,14 @@
     <a href="/app.php?site=food.html">Food</a>
     <a href="/app.php?site=misc.html">Miscellaneous</a>
     <a href="/app.php?site=create.html">Create a new post!</a>
+    <a href="/app.php?site=register.html">Register</a>
+    <a href="/app.php?site=login.html">Login</a>
 </div>
 
 <?php
 
 $site = $_GET["site"];
-if ($site != "create.html" && $site != "register.html") {
+if ($site != "create.html" && $site != "register.html" && $site != "login.html") {
     $site = "boards/" . $site;
 }
 readfile($site);
@@ -37,23 +39,32 @@ if (isset($_POST["username"])) {
     $password = $_POST["passcode"];
     $sql = "INSERT INTO credentials VALUES ('" . $username . "', '" . $password . "');";
     $db->exec($sql);
+    echo "Succesful registration!";
 }
 
 // creation of post
 if (isset($_POST["name"])) {
-  $name = dave_the_moderator($_POST["name"]);
-  $target = $_POST["target"];
-  $content = dave_the_moderator($_POST["message"]);
-  $date = date('Y-m-d');
+    $name = $_POST["name"];
+    $password = $_POST["password"];
 
-  $newpost = '
-    <div class="message">
-      <p>By: ' . $name . '</p>
-      <p>At: ' . $date . '</p>
-      <p>
-      <p> '. $content .'</p>
-    </div>';
-  file_put_contents($target, $newpost, FILE_APPEND);
+    $sql = "SELECT password FROM credentials WHERE id='" . $name . "'"; 
+    if ($password == $db->querySingle($sql)) {
+        $target = $_POST["target"];
+        $content = dave_the_moderator($_POST["message"]);
+        $date = date('Y-m-d');
+
+        $newpost = '
+        <div class="message">
+          <p>By: ' . dave_the_moderator($name) . '</p>
+          <p>At: ' . $date . '</p>
+          <p>
+          <p> '. $content .'</p>
+        </div>';
+        file_put_contents($target, $newpost, FILE_APPEND);
+        echo "Post created!";
+    } else {
+        echo "Bad login!";
+    }
 }
 
 ?>
