@@ -5,17 +5,20 @@
 </head>
 
 <div class="navbar">
-    <a href="/app.php?site=boards/main.html">Main</a>
-    <a href="/app.php?site=boards/tech.html">Tech</a>
-    <a href="/app.php?site=boards/meme.html">Memes</a>
-    <a href="/app.php?site=boards/food.html">Food</a>
-    <a href="/app.php?site=boards/misc.html">Miscellaneous</a>
+    <a href="/app.php?site=main.html">Main</a>
+    <a href="/app.php?site=tech.html">Tech</a>
+    <a href="/app.php?site=meme.html">Memes</a>
+    <a href="/app.php?site=food.html">Food</a>
+    <a href="/app.php?site=misc.html">Miscellaneous</a>
     <a href="/app.php?site=create.html">Create a new post!</a>
 </div>
 
 <?php
 
 $site = $_GET["site"];
+if ($site != "create.html" && $site != "register.html") {
+    $site = "boards/" . $site;
+}
 readfile($site);
 
 // Dave bans any use of the heretic word that i shall not pronounce.
@@ -24,6 +27,19 @@ function dave_the_moderator($evil) {
     return str_replace( "script", "EVIL WITCH WORD DETECTED", $evil );
 }
 
+// database setup
+$db = new SQLite3('store/user.db');
+$db->exec("CREATE TABLE credentials(id TEXT PRIMARY KEY, password TEXT)");
+
+// user registration
+if (isset($_POST["username"])) {
+    $username = $_POST["username"];
+    $password = $_POST["passcode"];
+    $sql = "INSERT INTO credentials VALUES ('" . $username . "', '" . $password . "');";
+    $db->exec($sql);
+}
+
+// creation of post
 if (isset($_POST["name"])) {
   $name = dave_the_moderator($_POST["name"]);
   $target = $_POST["target"];
