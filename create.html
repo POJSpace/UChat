@@ -1,7 +1,9 @@
+<script src="js/login.js"> </script>
+
 <html>
   <p>
   <form action="/app.php?site=create.html" method="post">
-          <input type="hidden" id="name" name="name" required>
+          <input type="hidden" id="username" name="name" required>
           <label for="target"> Board: </label>
           <select id="target" name="target">
             <option value="boards/main.html"> main </option>
@@ -11,7 +13,7 @@
             <option value="boards/food.html"> food </option>
           </select> <br> <br>
 
-          <input type="hidden" name="password" value=""/>
+          <input type="hidden" id="password" name="password" value=""/>
           
           <label for="message">Message:</label>
           <textarea id="message" name="message" rows="4" required></textarea><br><br>
