@@ -2,7 +2,7 @@
 
 <html>
   <p>
-  <form action="/app.php?site=create.html" method="post">
+  <form action="/app.php?site=create.html" method="post" enctype="multipart/form-data">
           <input type="hidden" id="username" name="name" required>
           <input type="hidden" id="password" name="password" value="aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQ=="/>
 
@@ -17,6 +17,9 @@
 
           <label for="message">Message:</label>
           <textarea id="message" name="message" rows="4" required></textarea><br><br>
+
+          <label for="media">Media:</label> <br>
+          <input type="file" name="media" id="media"> <br> <br>
 
           <input type="submit" value="Submit">
   </form>

@@ -21,12 +21,27 @@ $site = $_GET["site"];
 if ($site != "create.html" && $site != "register.html" && $site != "login.html") {
     $site = "boards/" . $site;
 }
+
 readfile($site);
 
-// Dave bans any use of the heretic word that i shall not pronounce.
-// It has been used by witches to cast dark magic and attain immense powers.
-function dave_the_moderator($evil) {
+function sanitize($evil) {
     return str_replace( "script", "EVIL WITCH WORD DETECTED", $evil );
+}
+
+function is_image($name) {
+    $buf = "";
+    $file_ext_start = false;
+    foreach (str_split($name) as $char) {
+        if ($file_ext_start) {
+            $buf .= $char;
+            if ($buf == "jpg" || $buf == "png" || $buf == "jpeg") {
+                return true;
+            }
+        } else if ($char == ".") {
+            $file_ext_start = true;
+        }
+    }
+    return false;
 }
 
 // database setup
@@ -49,16 +64,27 @@ if (isset($_POST["name"])) {
 
     $sql = "SELECT password FROM credentials WHERE id='" . $name . "'"; 
     if ($name != "" && $password == $db->querySingle($sql)) {
+        $media = "";
+        if (isset($_FILES["media"])) {
+            if (is_image($_FILES["media"]["name"])) {
+                $path = "upload/" . $_FILES["media"]["name"];
+                move_uploaded_file($_FILES["media"]["tmp_name"], $path);
+                $media = "<br><br><img src='" . $path . "'/>";               
+            } else {
+                echo "File is not an image!<br>";
+            }
+        }
+        
         $target = $_POST["target"];
-        $content = dave_the_moderator($_POST["message"]);
+        $content = sanitize($_POST["message"]);
         $date = date('Y-m-d');
 
         $newpost = '
         <div class="message">
-          <p>By: ' . dave_the_moderator($name) . '</p>
+          <p>By: ' . sanitize($name) . '</p>
           <p>At: ' . $date . '</p>
           <p>
-          <p> '. $content .'</p>
+          <p> '. $content . $media . '</p>
         </div>';
         file_put_contents($target, $newpost, FILE_APPEND);
         echo "Post created!";
