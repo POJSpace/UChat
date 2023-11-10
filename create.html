@@ -1,9 +1,11 @@
-<script src="js/login.js"> </script>
+<script src="static/login.js"> </script>
 
 <html>
   <p>
   <form action="/app.php?site=create.html" method="post">
           <input type="hidden" id="username" name="name" required>
+          <input type="hidden" id="password" name="password" value="aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQ=="/>
+
           <label for="target"> Board: </label>
           <select id="target" name="target">
             <option value="boards/main.html"> main </option>
@@ -13,8 +15,6 @@
             <option value="boards/food.html"> food </option>
           </select> <br> <br>
 
-          <input type="hidden" id="password" name="password" value=""/>
-          
           <label for="message">Message:</label>
           <textarea id="message" name="message" rows="4" required></textarea><br><br>
 

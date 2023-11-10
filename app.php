@@ -48,7 +48,7 @@ if (isset($_POST["name"])) {
     $password = $_POST["password"];
 
     $sql = "SELECT password FROM credentials WHERE id='" . $name . "'"; 
-    if ($password == $db->querySingle($sql)) {
+    if ($name != "" && $password == $db->querySingle($sql)) {
         $target = $_POST["target"];
         $content = dave_the_moderator($_POST["message"]);
         $date = date('Y-m-d');
