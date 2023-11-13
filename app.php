@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <head>
     <title>BUChat</title>
+    <script src="static/login.js"> </script>
+    <script src="https://unpkg.com/htmx.org@1.9.8"></script>
     <link rel="stylesheet" href="static/app.css"/>
 </head>
 
