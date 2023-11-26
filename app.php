@@ -47,7 +47,7 @@ function is_image($name) {
 }
 
 // database setup
-$db = new SQLite3('store/user.db');
+$db = new SQLite3('./store/user.db');
 $db->exec("CREATE TABLE credentials(id TEXT PRIMARY KEY, password TEXT)");
 
 // user registration
