@@ -27,7 +27,7 @@ if ($site != "create.html" && $site != "register.html" && $site != "login.html")
 readfile($site);
 
 function sanitize($evil) {
-    return str_replace( "script", "EVIL WITCH WORD DETECTED", $evil );
+    return str_replace( "script", "BLOCKED WORD", $evil );
 }
 
 function is_image($name) {
